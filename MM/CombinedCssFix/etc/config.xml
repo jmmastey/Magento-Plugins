@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config>
+
+  <modules>
+    <MM_CombinedCssFix>
+      <version>0.0.1</version>
+    </MM_CombinedCssFix>
+  </modules>
+
+  <global>
+    <models>
+      <combinedcssfix>
+        <class>MM_CombinedCssFix_Model</class>
+      </combinedcssfix>
+      <core>
+        <rewrite>
+          <design_package>MM_CombinedCssFix_Model_Design_Package</design_package>
+        </rewrite>
+      </core>
+    </models>
+  </global>
+
+</config>

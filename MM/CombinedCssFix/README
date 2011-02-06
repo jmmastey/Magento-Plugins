@@ -1,0 +1,8 @@
+MM - CombinedCssFix Module
+
+This module adds the following functionality:
+* Fixes Magento's CSS cache detection to force it to generate a separate combined CSS file for HTTPS pages.
+* Should eliminate mixed content warnings on checkout due to combined CSS.
+
+Let me know if you have any trouble installing. Thanks!
+Joseph Mastey <joseph.mastey@gmail.com>

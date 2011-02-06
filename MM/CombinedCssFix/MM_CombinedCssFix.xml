@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MM_CombinedCssFix>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends />
+        </MM_CombinedCssFix>
+    </modules>
+</config>
