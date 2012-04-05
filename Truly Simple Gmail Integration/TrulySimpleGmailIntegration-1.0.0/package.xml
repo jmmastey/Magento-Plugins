@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.7.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>TrulySimpleGmailIntegration</name>
+ <channel>connect.magentocommerce.com/community</channel>
+ <summary>Configure your Magento site to send mail through Gmail with a minimum of effort.</summary>
+ <description>Don&apos;t waste time trying to pull apart Magento or change server configurations just to send email via Gmail. Provide just your email information, and this extension will automatically channel all system emails through Gmail.
+
+Other advantages include:
+* Safety for future Magento upgrades.
+* Encrypted credentials for Gmail to keep your account safe.
+* Highly simplified configuration.
+* Functionality can be toggled on/off with ease.</description>
+ <lead>
+  <name>Joseph Mastey</name>
+  <user>masteringmagento</user>
+  <email>joseph.mastey@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2010-10-10</date>
+ <time>21:39:16</time>
+ <version>
+  <release>1.0.0</release>
+  <api>1.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">Creative Commons "Attribution-Noncommercial-Share Alike" License</license>
+ <notes>Base module, first release.</notes>
+ <contents>
+  <dir name="/">
+   <dir name="MM">
+    <dir name="TrulySimpleGmail">
+     <dir name="etc">
+      <file md5sum="09e32d22f660902f7c05dacb49aca9cc" name="adminhtml.xml" role="magelocal" />
+      <file md5sum="daa8b40b6cb66a9bf1a0ee530a34bdc9" name="config.xml" role="magelocal" />
+      <file md5sum="bde543832e926cdcfb9053cedeba2ae8" name="system.xml" role="magelocal" />
+     </dir> <!-- /MM/TrulySimpleGmail/etc -->
+     <dir name="Helper">
+      <file md5sum="bcaf8e6d203756f78607f6404c875b53" name="Data.php" role="magelocal" />
+     </dir> <!-- /MM/TrulySimpleGmail/Helper -->
+     <dir name="Model">
+      <dir name="Email">
+       <file md5sum="c2eb1036ea3bb13095224e196e4c716f" name="Instance.php" role="magelocal" />
+       <file md5sum="ad1ebf62dd0601db2ecb562167a87a1c" name="Template.php" role="magelocal" />
+      </dir> <!-- /MM/TrulySimpleGmail/Model/Email -->
+      <dir name="Newsletter">
+       <file md5sum="516644a6cc450719581dc63b6c81dde1" name="Template.php" role="magelocal" />
+      </dir> <!-- /MM/TrulySimpleGmail/Model/Newsletter -->
+      <file md5sum="2330a89983cdd5e467d513a489546773" name="Email.php" role="magelocal" />
+     </dir> <!-- /MM/TrulySimpleGmail/Model -->
+     <file md5sum="1f65f8af48b9ec320aec9d7a9e43082b" name="MM_TrulySimpleGmail.xml" role="magelocal" />
+     <file md5sum="4346244ba43c5372f31477372a22ef5a" name="README" role="magelocal" />
+    </dir> <!-- /MM/TrulySimpleGmail -->
+   </dir> <!-- /MM -->
+   <dir name="modules">
+    <file md5sum="1f65f8af48b9ec320aec9d7a9e43082b" name="MM_TrulySimpleGmail.xml" role="mageetc" />
+   </dir> <!-- /modules -->
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.0</min>
+    <max>6.0.0</max>
+   </php>
+   <pearinstaller>
+    <min>1.6.2</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
+</package>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config>
+
+  <modules>
+    <MM_TrulySimpleGmail>
+      <version>0.0.1</version>
+    </MM_TrulySimpleGmail>
+  </modules>
+
+  <global>
+    <helpers>
+      <trulysimplegmail>
+        <class>MM_TrulySimpleGmail_Helper</class>
+      </trulysimplegmail>
+    </helpers>
+    <models>
+      <trulysimplegmail>
+        <class>MM_TrulySimpleGmail_Model</class>
+      </trulysimplegmail>
+      <core>
+        <rewrite>
+          <email>MM_TrulySimpleGmail_Model_Email</email>
+          <email_template>MM_TrulySimpleGmail_Model_Email_Template</email_template>
+        </rewrite>
+      </core>
+      <newsletter>
+        <rewrite>
+          <template>MM_TrulySimpleGmail_Model_Newsletter_Template</template>
+        </rewrite>
+      </newsletter>
+    </models>
+  </global>
+
+  <trulysimplegmail>
+    <host>smtp.gmail.com</host>
+    <ssl>tls</ssl>
+    <port>587</port>
+    <auth>login</auth>
+  </trulysimplegmail>
+
+</config>

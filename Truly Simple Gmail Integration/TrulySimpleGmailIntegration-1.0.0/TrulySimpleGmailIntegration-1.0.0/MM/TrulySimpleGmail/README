@@ -1,0 +1,9 @@
+MM - TrulySimpleGmail Module
+
+This module adds the following functionality:
+- Adds a highly simplified configuration panel for using gmail as a sendmail transport
+
+In order to install this module, run install.sh to symlink files as appropriate.
+
+Let me know if you have any trouble installing. Thanks!
+Joseph Mastey <joseph.mastey@gmail.com>

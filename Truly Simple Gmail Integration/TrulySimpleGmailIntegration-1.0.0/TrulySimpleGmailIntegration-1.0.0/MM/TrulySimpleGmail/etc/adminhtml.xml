@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config>
+
+  <acl>
+    <resources>
+      <admin>
+        <children>
+          <system>
+            <children>
+              <config>
+                <children>
+                  <email_delivery translate="title">
+                    <title>Email Delivery Configuration</title>
+                    <sort_order>9999</sort_order>
+                  </email_delivery>
+                </children>
+              </config>
+            </children>
+          </system>
+        </children>
+      </admin>
+    </resources>
+  </acl>
+
+</config>
