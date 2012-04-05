@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.7.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>MM_CatalogVisibility</name>
+ <channel>connect.magentocommerce.com/community</channel>
+ <summary>See whether (and why) your products display in the catalog.</summary>
+ <description>It&apos;s easy to get lost when setting up your Magento catalog, and you may be left wondering why your products won&apos;t show up where you expect them to.
+
+This extension adds a tab to the product edit form which shows you why the product may not be visible and gives you specific advice on how to correct the situation.</description>
+ <lead>
+  <name>Joseph Mastey</name>
+  <user>masteringmagento</user>
+  <email>joseph.mastey@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2010-04-22</date>
+ <time>00:45:59</time>
+ <version>
+  <release>1.0.4</release>
+  <api>1.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution License</license>
+ <notes>First release</notes>
+ <contents>
+  <dir name="/">
+   <dir name="adminhtml">
+    <dir name="default">
+     <dir name="default">
+      <dir name="template">
+       <dir name="catalogvisibility">
+        <file md5sum="995dd2c3a15330d0561a1f2e28a5d19d" name="view.phtml" role="magedesign" />
+       </dir> <!-- /adminhtml/default/default/template/catalogvisibility -->
+      </dir> <!-- /adminhtml/default/default/template -->
+     </dir> <!-- /adminhtml/default/default -->
+    </dir> <!-- /adminhtml/default -->
+   </dir> <!-- /adminhtml -->
+   <dir name="MM">
+    <dir name="CatalogVisibility">
+     <dir name="">
+      <dir name="Block">
+       <dir name="Adminhtml">
+        <dir name="Catalog">
+         <dir name="Product">
+          <dir name="Edit">
+           <file md5sum="bfc8938a460076ce0a81745530e4b0c9" name="Tabs.php" role="magelocal" />
+          </dir> <!-- /MM/CatalogVisibility//Block/Adminhtml/Catalog/Product/Edit -->
+         </dir> <!-- /MM/CatalogVisibility//Block/Adminhtml/Catalog/Product -->
+        </dir> <!-- /MM/CatalogVisibility//Block/Adminhtml/Catalog -->
+       </dir> <!-- /MM/CatalogVisibility//Block/Adminhtml -->
+       <dir name="Product">
+        <dir name="Inventory">
+         <file md5sum="0fc5e9bcc6beccc24545f59dd85e4a4a" name="View.php" role="magelocal" />
+        </dir> <!-- /MM/CatalogVisibility//Block/Product/Inventory -->
+       </dir> <!-- /MM/CatalogVisibility//Block/Product -->
+      </dir> <!-- /MM/CatalogVisibility//Block -->
+      <dir name="etc">
+       <file md5sum="2cd453d5c6fa0e8a1d8fd4ccb8900035" name="config.xml" role="magelocal" />
+      </dir> <!-- /MM/CatalogVisibility//etc -->
+      <dir name="Helper">
+       <file md5sum="6061fe9b7710904c45ba104295f0fde1" name="Data.php" role="magelocal" />
+      </dir> <!-- /MM/CatalogVisibility//Helper -->
+      <dir name="Model">
+       <dir name="Mysql4">
+        <file md5sum="3b6810ed3b3d787ad9dee4e9c6dadcf9" name="Price.php" role="magelocal" />
+       </dir> <!-- /MM/CatalogVisibility//Model/Mysql4 -->
+       <file md5sum="18baf99d1d6725a52f33f6fcacaef0e7" name="Price.php" role="magelocal" />
+      </dir> <!-- /MM/CatalogVisibility//Model -->
+     </dir> <!-- /MM/CatalogVisibility/ -->
+    </dir> <!-- /MM/CatalogVisibility -->
+   </dir> <!-- /MM -->
+   <dir name="modules">
+    <file md5sum="9cfd11089acea78689c098f798787c12" name="MM_CatalogVisibility.xml" role="mageetc" />
+   </dir> <!-- /modules -->
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.0</min>
+    <max>6.0.0</max>
+   </php>
+   <pearinstaller>
+    <min>1.6.2</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
+</package>

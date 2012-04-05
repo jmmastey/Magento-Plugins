@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>Catalog Visibility Readme</title>
+    </head>
+    <body>
+        <h1>Catalog Visibility</h1>
+        <p>Thanks for purchasing this extension from Mastering Magento. We do everything we can to make your experience a smooth and positive one, so let us know if you have any problems. We always appreciate your business!</p>
+        
+        <h2>About This Extension</h2>
+        <p>Catalog Visibility is a Magento extension that allows store owners to see the reasons that contribute to the salability and visibility of their catalog products. Store owners will be able to easily verify that they have correctly set up their products with this module.</p>
+        
+        <h2>Installation</h2>
+        <ol>
+            <li><strong>Back Up Your Data</strong> - Any installation can go wrong, so make sure all to back up your code and database before installing any new extension.</li>
+            <li><strong>Extract Files</strong> - Unzip the files from this archive into some location you can get to.</li>
+            <li><strong>Upload Data</strong> - Using a FTP client (or SCP transfer), copy the directories from the unzipped archive into the app directory of your Magento installation. See below for specific file copying instructions.</li>
+            <li><strong style='color:red;'>Refresh Your Cache</strong> - Most installation problems can be alleviated by clearing your site and browser cache. Clear cache in Magento, then logout and log back in for best results. Just try it, you'll see!</li>
+            <li><strong>Log Out and Log Back In</strong> - Magento needs to install the new module, and logging out and then back in should cause it to do this.</li>
+            <li><strong>Troubleshooting</strong> - If you don't see any changes, take a look at System -> Configuration -> Advanced and see if MM_Visibility is listed in the modules list. If so, the module is installed, and some caching is probably at fault.</li>
+        </ol>
+
+        <h2>Copying Files</h2>
+        <p>Many FTP clients will copy subdirectories properly when you attempt to copy a higher level directory. If not, you will need to copy folders from the extension directory manually.</p>
+        <ol>
+            <li>Copy <em>adminhtml</em> to %magento%/app/design. If you are using a theme other than default/default, you may want to copy adminhtml/default/default/template into %magento%/app/design/adminhtml/default/%yourtheme%/template</li>
+            <li>Copy <em>MM</em> into %magento%/app/code/local. You may have to create this directory if it does not exist.</li>
+            <li>Copy <em>modules/MM_CatalogVisibility.xml</em> into %magento%/app/etc/modules</li>
+            <li>Copy <em>en_US/MM_CatalogVisibility.csv</em> (and any other language CSV files) into %magento%/app/locale/%language%/</li>
+            <li><em>package.xml</em> is used to automate deployments and can be safely ignored.</li>
+        </ol>
+
+        <h2>Contact Us</h2>
+        <p>If you have any problems, feel free to email me at <a href='mailto:joe@masteringmagento.com'>joe@masteringmagento.com</a>. Thanks!</p>
+    </body>
+</html>

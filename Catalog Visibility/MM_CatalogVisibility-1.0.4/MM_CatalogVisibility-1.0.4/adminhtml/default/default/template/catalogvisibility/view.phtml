@@ -1,0 +1,211 @@
+<?php
+
+/**
+ * view.phtml
+ * 
+ * View of why your stuff doesn't show up in the catalog
+ * 
+ * @author		    Joseph Mastey <joseph.mastey@gmail.com>
+ * @author		    $Author$
+ * @version		    $Id$
+ * @package		    MM
+ * @subpackage		CatalogVisibility
+ * @copyright		Copyright (c) Joseph Mastey, 2010-
+ */
+?>
+<?php
+    $product    = $this->getProduct();
+    $type       = $product->getTypeId();
+    if(!$product->getId()) {
+        return;
+    }
+    
+    $messages   = array();
+
+    if($this->isVisible($product)) {
+        $messages['visible']    = "<span class='success'>".Mage::getSingleton('catalog/product_visibility')->getOptionText($product->getVisibility())."</span>";
+    } else {
+        $messages['visible']    = "<span class='failure'>".Mage::getSingleton('catalog/product_visibility')->getOptionText($product->getVisibility())."</span>";
+    }
+
+    if(!$this->isVisibleInCatalog($product)) {
+        $this->addAdvice("Set product visibility to 'Both' or 'Visible in Catalog' in the <emph>General</emph> tab.");
+    }
+
+
+    if($this->isEnabled($product)) {
+        $messages['enabled']    = "<span class='success'>".Mage_Catalog_Model_Product_Status::getOptionText($product->getStatus())."</span>";
+    } else {
+        $messages['enabled']    = "<span class='failure'>".Mage_Catalog_Model_Product_Status::getOptionText($product->getStatus())."</span>";
+        $this->addAdvice("Set product to 'Enabled' in the <emph>General</emph> tab.");
+    }
+
+    if(0 == strcmp("simple", $type)) {
+        if($this->hasQty($product)) {
+            $messages['qty']        = "<span class='success'>".(int)$product->getStockItem()->getQty()."</span>";
+        } else {
+            $min                    = $this->getMinQty($product);
+            $backorders             = $this->allowsBackorders($product);
+            
+            $msgs       = array($this->__("Backorders Allowed").": ".$this->__($backorders?"Yes":"No"), );
+            if($min) { $msgs[] = $this->__("Min").": $min"; }
+            
+            $messages['qty']        = "<span class='failure'>".(int)$product->getStockItem()->getQty()." (".implode($msgs).")</span>";
+            $this->addAdvice("Add quantity to your product in the <emph>Inventory</emph> tab. This is necessary even if stock is not manged.");
+            
+            if($min) {
+                $this->addAdvice("Consider dropping the minimum purchase quantity for this product in the <emph>Inventory</emph> tab.");
+            }
+            if(!$backorders) {
+                $this->addAdvice("Consider allowing customers to backorder this product in the <emph>Inventory</emph> tab.");            
+            }
+        }
+    } else {
+        $messages['qty']        = "<span class='success'>".$this->__('Not Relevant for Complex Product')."</span>";
+        $this->addAdvice("Check child objects to make sure they have sufficient quantities for sale and are In Stock.");
+    }
+    
+    if($this->isInStock($product)) {
+        $messages['stock']      = "<span class='success'>".Mage::helper('cataloginventory')->__('In Stock')."</span>";
+    } else {
+        $messages['stock']      = "<span class='failure'>".Mage::helper('cataloginventory')->__('Out of Stock')."</span>";        
+        $this->addAdvice("Mark this product as 'In Stock' in the <emph>Inventory</emph> tab. This is necessary even if stock is not managed.");            
+    }
+    
+    if($this->stockIsManaged($product)) {
+        $messages['managed']    = "<span class='success'>".Mage::helper('catalogvisibility')->__('Stock is Managed')."</span>";
+    } else {
+        if(!$this->isInStock($product) || !$this->hasQty($product)) {
+            $messages['managed']    = "<span class='failure'>".Mage::helper('catalogvisibility')->__('Stock is not managed, product has no qty or is out of stock')."</span>";
+        } else {
+            $messages['managed']    = "<span class='success'>".Mage::helper('catalogvisibility')->__('Stock is not managed')."</span>";
+        }
+    }
+    
+    $categories = $this->getCategories($product);
+    if(count($categories)) {
+        $names  = array();
+        foreach($categories as $category) {
+            $names[]    = $category->getName();
+        }
+            
+        $messages['categories'] = "<span class='success'>".implode('; ', $names)."</span>";        
+    } else {
+        $messages['categories'] = "<span class='failure'>".Mage::helper('catalogvisibility')->__('Not Assigned to Any Categories')."</span>";
+        $this->addAdvice("Assign this product to one or more categories in the <emph>Categories</emph> tab.");            
+    }
+    
+    $websites   = $this->getWebsites($product);
+    if(count($websites)) {
+        $messages['websites']   = "<span class='success'>".implode('; ', $websites)."</span>";        
+    } else {
+        $messages['websites']   = "<span class='failure'>".Mage::helper('catalogvisibility')->__('Not Assigned to Any Websites')."</span>";
+        $this->addAdvice("Assign this product to a website in the <emph>Websites</emph> tab. If you don't see a <emph>Websites</emph> tab, you may have a faulty data import from Magento Dataflow.");            
+    }
+    
+    if($this->isVisibleInCatalog($product) && $this->isEnabled($product) && $this->hasMinimalPrice($product)) {
+        $messages['overall']    = "<span class='success'>".Mage::helper('catalogvisibility')->__('Visible')."</span>";
+    } else {
+        $messages['overall']    = "<span class='failure'>".Mage::helper('catalogvisibility')->__('Not Visible')."</span>";        
+    }
+    
+    if($this->isSalable($product)) {
+        $messages['salable']    = "<span class='success'>".Mage::helper('catalogvisibility')->__('Salable')."</span>";
+    } else {
+        $messages['salable']    = "<span class='failure'>".Mage::helper('catalogvisibility')->__('Not Salable')."</span>";        
+    }
+    
+    if(0 === strcmp("configurable", $type)) {
+        if($this->hasValidChildProducts($product)) {
+            $messages['children']   = "<span class='success'>".Mage::helper('catalogvisibility')->__('Product has valid child products.')."</span>";
+        } else {
+            $messages['children']   = "<span class='failure'>".Mage::helper('catalogvisibility')->__('Product does not have valid child products.')."</span>";            
+            $this->addAdvice("Define simple products for this product in the <emph>Associated Products</emph> tab.");
+        }
+    }
+    
+    $this->addAdvice("Refresh the <emph>Cache</emph> and any <emph>Indexes</emph> on the site.");
+?>
+<?php $i = 1; ?>
+<style>
+    #table_catalogvisibility span.success { color:black; }
+    #table_catalogvisibility span.failure { color:red; font-weight:bold; }
+    #table_visibility_advice emph { font-weight:bold; }
+</style>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalogvisibility')->__('Catalog Visibility') ?></h4>
+    </div>
+    <fieldset>
+        <legend><?php echo Mage::helper('catalogvisibility')->__('Catalog Visibility') ?></legend>
+        <table cellspacing="0" class="form-list" id="table_catalogvisibility">
+        <tr>
+            <td class="label"><label><?php echo Mage::helper('catalogvisibility')->__('Visible in Catalog') ?></label></td>
+            <td class="value"><?php print $messages['overall']; ?></td>
+        </tr>
+        <tr>
+            <td class="label"><label><?php echo Mage::helper('catalogvisibility')->__('Can Be Added to Cart') ?></label></td>
+            <td class="value"><?php print $messages['salable']; ?></td>
+        </tr>        
+        <tr>
+            <td class="label">&nbsp;</td>
+            <td class="value">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="label"><label>1. <?php echo Mage::helper('catalog')->__('Status') ?></label></td>
+            <td class="value"><?php print $messages['enabled']; ?></td>
+        </tr>
+        <tr>
+            <td class="label"><label>2. <?php echo Mage::helper('catalog')->__('Visibility') ?></label></td>
+            <td class="value"><?php print $messages['visible']; ?></td>
+        </tr>
+        <tr>
+            <td class="label"><label>3. <?php echo Mage::helper('catalog')->__('Qty') ?></label></td>
+            <td class="value"><?php print $messages['qty']; ?></td>
+        </tr>
+        <tr>
+            <td class="label"><label>4. <?php echo Mage::helper('catalog')->__('Stock Availability') ?></label></td>
+            <td class="value"><?php print $messages['stock']; ?></td>
+        </tr>
+        <tr>
+            <td class="label"><label>5. <?php echo Mage::helper('catalog')->__('Stock Tracked') ?></label></td>
+            <td class="value"><?php print $messages['managed']; ?></td>
+        </tr>
+        <tr>
+            <td class="label"><label>6. <?php echo Mage::helper('catalog')->__('Product Categories') ?></label></td>
+            <td class="value"><?php print $messages['categories']; ?></td>
+        </tr>
+        <tr>
+            <td class="label"><label>7. <?php echo Mage::helper('catalog')->__('Enabled Websites') ?></label></td>
+            <td class="value"><?php print $messages['websites']; ?></td>
+        </tr>
+        <?php if(0 === strcmp("configurable", $type)) { ?>
+        <tr>
+            <td class="label"><label>8. <?php echo Mage::helper('catalogvisibility')->__('Child Products') ?></label></td>
+            <td class="value"><?php print $messages['children']; ?></td>
+        </tr>
+        <?php } ?>
+        </table>
+    </fieldset>
+</div>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalogvisibility')->__('To Make Your Product Visible') ?></h4>
+    </div>
+    <fieldset>
+        <table cellspacing="0" class="form-list" id="table_visibility_advice">
+        <tr>
+            <td>
+                <ol style='list-style-type:decimal; list-style-position:inside;'>
+                    <?php
+                    $advice = $this->getAdvice();
+                    foreach($advice as $protip) {
+                        print "<li>$protip</li>";
+                    }
+                    ?>
+                </ol>
+            </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>

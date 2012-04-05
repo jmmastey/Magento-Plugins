@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>MM_CatalogVisibility</name>
+ <channel>connect.magentocommerce.com/community</channel>
+ <summary>See whether (and why) your products display in the catalog.</summary>
+ <description>It&apos;s easy to get lost when setting up your Magento catalog, and you may be left wondering why your products won&apos;t show up where you expect them to.
+
+This extension adds a tab to the product edit form which shows you why the product may not be visible and gives you specific advice on how to correct the situation.</description>
+ <lead>
+  <name>Joseph Mastey</name>
+  <user>masteringmagento</user>
+  <email>joseph.mastey@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2010-06-13</date>
+ <time>20:00:15</time>
+ <version>
+  <release>1.0.5</release>
+  <api>1.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">Creative Commons "Attribution-Noncommercial-Share Alike" License</license>
+ <notes>
+Added localization and fixed minor bugs.
+ </notes>
+ <contents>
+  <dir name="/">
+   <dir name="adminhtml">
+    <dir name="default">
+     <dir name="default">
+      <dir name="template">
+       <dir name="catalogvisibility">
+        <file md5sum="96078bd21a93c38382fefaec1cdef8c2" name="view.phtml" role="magedesign" />
+       </dir> <!-- /adminhtml/default/default/template/catalogvisibility -->
+      </dir> <!-- /adminhtml/default/default/template -->
+     </dir> <!-- /adminhtml/default/default -->
+    </dir> <!-- /adminhtml/default -->
+   </dir> <!-- /adminhtml -->
+   <dir name="en_US">
+    <file md5sum="47de5a8d20443eb1417003640f0fbe17" name="MM_CatalogVisibility.csv" role="magelocale" />
+   </dir> <!-- /en_US -->
+   <dir name="es_ES">
+    <file md5sum="cf72cca8479c0279b9871cfcd5a3ef82" name="MM_CatalogVisibility.csv" role="magelocale" />
+   </dir> <!-- /es_ES -->
+   <dir name="fr_FR">
+    <file md5sum="bb3ee1868f6b3d3dedd4b267d70c2155" name="MM_CatalogVisibility.csv" role="magelocale" />
+   </dir> <!-- /fr_FR -->
+   <dir name="MM">
+    <dir name="CatalogVisibility">
+     <dir name="">
+      <dir name="Block">
+       <dir name="Adminhtml">
+        <dir name="Catalog">
+         <dir name="Product">
+          <dir name="Edit">
+           <file md5sum="a8c5fb22c77f7f6bcf4bd933fa106226" name="Tabs.php" role="magelocal" />
+          </dir> <!-- /MM/CatalogVisibility//Block/Adminhtml/Catalog/Product/Edit -->
+         </dir> <!-- /MM/CatalogVisibility//Block/Adminhtml/Catalog/Product -->
+        </dir> <!-- /MM/CatalogVisibility//Block/Adminhtml/Catalog -->
+       </dir> <!-- /MM/CatalogVisibility//Block/Adminhtml -->
+       <dir name="Product">
+        <dir name="Inventory">
+         <file md5sum="b15cce4afeb0b0ae17a6c0722bfff214" name="View.php" role="magelocal" />
+        </dir> <!-- /MM/CatalogVisibility//Block/Product/Inventory -->
+       </dir> <!-- /MM/CatalogVisibility//Block/Product -->
+      </dir> <!-- /MM/CatalogVisibility//Block -->
+      <dir name="etc">
+       <file md5sum="c5f51fcb4d6e767565b0ff1aa0a657e8" name="config.xml" role="magelocal" />
+      </dir> <!-- /MM/CatalogVisibility//etc -->
+      <dir name="Helper">
+       <file md5sum="5fe88672dc6b7a182f3eede573c06805" name="Data.php" role="magelocal" />
+      </dir> <!-- /MM/CatalogVisibility//Helper -->
+      <dir name="Model">
+       <dir name="Mysql4">
+        <file md5sum="57789f8aa6b4d1c57713f0f93f673740" name="Price.php" role="magelocal" />
+       </dir> <!-- /MM/CatalogVisibility//Model/Mysql4 -->
+       <file md5sum="6d3805fbbd4626304d12785fc82482db" name="Price.php" role="magelocal" />
+      </dir> <!-- /MM/CatalogVisibility//Model -->
+      <dir name="readme">
+       <file md5sum="c35fc3c4b936c8ecff4564e545aece57" name="en.html" role="magelocal" />
+      </dir> <!-- /MM/CatalogVisibility//readme -->
+     </dir> <!-- /MM/CatalogVisibility/ -->
+    </dir> <!-- /MM/CatalogVisibility -->
+   </dir> <!-- /MM -->
+   <dir name="modules">
+    <file md5sum="9cfd11089acea78689c098f798787c12" name="MM_CatalogVisibility.xml" role="mageetc" />
+   </dir> <!-- /modules -->
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.0</min>
+    <max>6.0.0</max>
+   </php>
+   <pearinstaller>
+    <min>1.6.2</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
+</package>

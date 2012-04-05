@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config>
+	
+	<modules>
+		<MM_CatalogVisibility>
+			<version>1.0.5</version>
+		</MM_CatalogVisibility>
+	</modules>
+	
+	<global>
+		<models>
+			<catalogvisibility>
+				<class>MM_CatalogVisibility_Model</class>
+			</catalogvisibility>
+		</models>
+		<blocks>
+			<catalogvisibility>
+				<class>MM_CatalogVisibility_Block</class>
+			</catalogvisibility>
+			<adminhtml>
+				<rewrite>
+					<catalog_product_edit_tabs>MM_CatalogVisibility_Block_Adminhtml_Catalog_Product_Edit_Tabs</catalog_product_edit_tabs>
+				</rewrite>
+			</adminhtml>
+		</blocks>		
+		<helpers>
+			<catalogvisibility>
+				<class>MM_CatalogVisibility_Helper</class>
+			</catalogvisibility>
+		</helpers>
+	</global>
+	
+	<adminhtml>
+        <translate>
+            <modules>
+                <MM_CatalogVisibility>
+                    <files>
+                        <default>MM_CatalogVisibility.csv</default>
+                    </files>
+                </MM_CatalogVisibility>
+            </modules>
+        </translate>
+	</adminhtml>
+	
+</config>
